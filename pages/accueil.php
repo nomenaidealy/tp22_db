@@ -1,7 +1,7 @@
 <?php 
     require("../inc/fonction.php");
-    $resultat = selectDepartments();
-    
+    ini_set("display_errors",1);
+    $resultat = select_name_manager();
    
 ?>
 <!DOCTYPE html>
@@ -16,6 +16,7 @@
         <tr>
         <th>numero d departement</th>
         <th>Nom Departement</th>
+        <th>Nom Manager</th>
         </tr>
         <?php while($donnee = mysqli_fetch_assoc($resultat))
         {?>
@@ -23,6 +24,7 @@
        <tr>
        <td><?php echo $donnee["dept_no"] ; ?></td>
        <td><?php echo $donnee["dept_name"] ;?></td>
+       <td><?php echo $donnee["last_name"] ;?></td>
        </tr>
 
        <?php }?>
