@@ -38,9 +38,7 @@ $resultat = select_lien_departement($num);
         </div>
         
         <div class="mt-3">
-            <a href="javascript:history.back()" class="btn btn-secondary">
-                ← Retour
-            </a>
+           <a href="accueil.php" target="_blank" class="btn btn-secondary">← Retour</a>
         </div>
     </div>
 </body>
