@@ -22,8 +22,8 @@ return $resultat;
 function select_lien_departement($num){
     $sql="SELECT last_name from employees 
     join departments 
-    join dept_manager 
-    on dept_manager.dept_no=departments.dept_no on dept_manager.emp_no=employees.emp_no
+    join dept_emp 
+    on dept_emp.dept_no=departments.dept_no on dept_emp.emp_no=employees.emp_no
     where departments.dept_no='$num'";
 
 $sql=sprintf($sql);
