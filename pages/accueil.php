@@ -26,20 +26,22 @@
                             <th>Nom du manager</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php while($donnee = mysqli_fetch_assoc($resultat)) { ?>
-                        <tr>
-                            <td>
-                                <a href="employer.php?num=<?php echo $donnee["dept_no"]; ?>" 
-                                   class="text-decoration-none fw-bold">
-                                    <?php echo $donnee["dept_no"]; ?>
-                                </a>
-                            </td>
-                            <td><?php echo $donnee["dept_name"]; ?></td>
-                            <td><?php echo $donnee["last_name"]; ?></td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
+                <tbody>
+<?php while($donnee = mysqli_fetch_assoc($resultat)) { ?>
+<tr>
+    <td colspan="3" class="p-0">
+        <a href="employer.php?num=<?php echo $donnee["dept_no"]; ?>" 
+           class="d-block text-decoration-none text-dark p-3">
+            <div class="row">
+                <div class="col-4 fw-bold"><?php echo $donnee["dept_no"]; ?></div>
+                <div class="col-4"><?php echo $donnee["dept_name"]; ?></div>
+                <div class="col-4"><?php echo $donnee["last_name"]; ?></div>
+            </div>
+        </a>
+    </td>
+</tr>
+<?php } ?>
+</tbody>
                 </table>
             </div>
         </div>   <div class="mt-3">
