@@ -1,0 +1,24 @@
+Projet TP22
+
+Telechargement des fichier via https://github.com/datacharmer/test_db ok
+Insertion de tout les donnee dans mysql via les commandes : 
+       -changemnt des chemin dans employees.sql en /opt/lampp/htdocs/
+       - /opt/lampp/bin/mysql -u root < /opt/lampp/htdocs/test_db-master/employees.sql ok
+       - verification de tout les donnees dans la base de donnee employees
+Creation des des pages(OK):
+       -page index.php (petite presentation de la page avec html) ok
+       -page accueil.php(affichage de tout les listes des departement ainsi que les manager)
+                  -
+                  -creation de la fonction select_name_manager
+        -page employer.php(affichage de tout les listes des employers)
+                  -creation de la fonction select_liste_employer ok
+Fonction:
+        -fonction select_name_manager: selectionne tout les liste de departement ainsi que 
+         le nom de chaque manager en cours en joingnant la table employees , departement et demp_manager
+
+
+        -fonction select_lien_departement: selectionne tout les liste des employees ainsi que 
+         leurs noms en cours en joingnant la table employees , departement et demp_emp
+Mise en forme :
+        boostrap pour chaque page ok
+

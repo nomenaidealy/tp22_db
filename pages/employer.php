@@ -1,7 +1,7 @@
 <?php
- require("../inc/fonction.php");
-ini_set("display_errors",1);
-$num=$_GET['num'];
+require("../inc/fonction.php");
+ini_set("display_errors", 1);
+$num = $_GET['num'];
 $resultat = select_lien_departement($num);
 ?>
 <!DOCTYPE html>
@@ -9,37 +9,57 @@ $resultat = select_lien_departement($num);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employés du département</title>
-   <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-light">
-    
-    <div class="container mt-5">
-        <h1 class="mb-4 text-center">Employés du département <?php echo htmlspecialchars($num); ?></h1>
-        
-        <div class="card">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover mb-0">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Nom employé</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while($donnee = mysqli_fetch_assoc($resultat)) { ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($donnee["last_name"]); ?></td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
+ <main class="container">
+        <section class="employee-list">
+            <header class="mb-4">
+                <h2 class="text-center">Employés du département <?php echo htmlspecialchars($num); ?></h2>
+            </header>
+
+            <article class="card">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover mb-0" role="table" aria-label="Liste des employés du département <?php echo htmlspecialchars($num); ?>">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col" id="employee-name">Nom complet de l'employé</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                while($donnee = mysqli_fetch_assoc($resultat)) { 
+                                ?>
+                                <tr>
+                                    <td headers="employee-name">
+                                        <span class="fw-medium"><?php echo ($donnee["first_name"]); ?></span>
+                                        <span><?php echo ($donnee["last_name"]); ?></span>
+                                    </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </article>
+        </section>
+
+        <nav class="mt-4" aria-label="Navigation">
+            <a href="accueil.php" class="btn btn-secondary">
+                ←Retour à l'accueil
+            </a>
+        </nav>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p class="mb-0">
+                <small> Système de gestion des employés</small>
+            </p>
         </div>
-        
-        <div class="mt-3">
-           <a href="accueil.php" target="_blank" class="btn btn-secondary">← Retour</a>
-        </div>
-    </div>
+    </footer>
 </body>
 </html>
