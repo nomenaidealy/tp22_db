@@ -20,7 +20,7 @@
             <div class="table-responsive">
                 <table class="table table-striped table-hover mb-0">
                     <thead class="table-dark">
-                        <tr>
+                        
                             <th>Numéro de département</th>
                             <th>Nom du département</th>
                             <th>Nom du manager</th>

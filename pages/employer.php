@@ -30,14 +30,17 @@ $resultat = select_lien_departement($num);
                             </thead>
                             <tbody>
                                 <?php
-                                while($donnee = mysqli_fetch_assoc($resultat)) { 
-                                ?>
-                                <tr>
-                                    <td headers="employee-name">
-                                        <span class="fw-medium"><?php echo ($donnee["first_name"]); ?></span>
-                                        <span><?php echo ($donnee["last_name"]); ?></span>
-                                    </td>
-                                </tr>
+                                while($donnee = mysqli_fetch_assoc($resultat)) {?>                   
+                             <td colspan="3" class="p-0">
+                             <a href="fiche.php?num=<?php echo $donnee["emp_no"]; ?>" 
+                             class="d-block text-decoration-none text-dark p-3">
+                             <div class="row">
+                             <div class="col-4 fw-bold"><?php echo $donnee["first_name"]; ?>  <?php echo $donnee["last_name"]; ?> </div>
+                             
+            </div>
+        </a>
+    </td>
+</tr>
                                 <?php } ?>
                             </tbody>
                         </table>
@@ -48,9 +51,7 @@ $resultat = select_lien_departement($num);
         </section>
 
         <nav class="mt-4" aria-label="Navigation">
-            <a href="accueil.php" class="btn btn-secondary">
-                ←Retour à l'accueil
-            </a>
+      
         </nav>
     </main>
 

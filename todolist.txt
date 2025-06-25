@@ -16,9 +16,11 @@ Fonction:
         -fonction select_name_manager: selectionne tout les liste de departement ainsi que 
          le nom de chaque manager en cours en joingnant la table employees , departement et demp_manager
 
-
         -fonction select_lien_departement: selectionne tout les liste des employees ainsi que 
          leurs noms en cours en joingnant la table employees , departement et demp_emp
+
+         -Fonction select_liste_employer:Selectionne tout les fiches personnels de l'employe selectionne
+         modification de select_liste_employer pour afficher les salaire ok
 Mise en forme :
         boostrap pour chaque page ok
 
