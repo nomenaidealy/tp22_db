@@ -12,12 +12,12 @@ $resultat = mysqli_query(dbconnect(), $sql);
 return $resultat;
 }
 
-function select_lien_departement($num){
+function select_lien_departement($num,$offset=0){
     $sql="SELECT last_name,first_name,employees.emp_no,dept_name from employees 
     join departments 
     join dept_emp 
     on dept_emp.dept_no=departments.dept_no on dept_emp.emp_no=employees.emp_no
-    where departments.dept_no='$num'";
+    where departments.dept_no='$num' LIMIT 20 OFFSET $offset";
 $sql=sprintf($sql);
 $resultat = mysqli_query(dbconnect(), $sql);
 return $resultat;

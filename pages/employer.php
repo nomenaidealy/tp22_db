@@ -25,7 +25,6 @@ $resultat = select_lien_departement($num, $offset);
             <header class="mb-4">
                 <h2 class="text-center">Employés du département <?php echo htmlspecialchars($num); ?></h2>
             </header>
-            
             <article class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive">
@@ -64,54 +63,6 @@ $resultat = select_lien_departement($num, $offset);
             </article>
         </section>
         
-        <nav class="mt-4">
-            <button onclick="history.back()" class="btn btn-secondary">Retour</button>
-        </nav>
-    </main>
-    
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <div class="container">
-            <p class="mb-0">
-                <small>Système de gestion des employés</small>
-            </p>
-        </div>
-    </footer>
-<main class="container">
-    <section class="employee-list">
-        <header class="mb-4">
-            <h2 class="text-center">Employés du département <?php echo htmlspecialchars($num); ?></h2>
-        </header>
-
-        <article class="card">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover mb-0" role="table" aria-label="Liste des employés du département <?php echo htmlspecialchars($num); ?>">
-                        <thead class="table-dark">
-                            <tr>
-                                <th scope="col" id="employee-name">Nom complet de l'employé</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php while($donnee = mysqli_fetch_assoc($resultat)) { ?>     
-                            <tr>              
-                                <td class="p-0">
-                                    <a href="fiche.php?num=<?php echo $donnee["emp_no"]; ?>" class="d-block text-decoration-none text-dark p-3">
-                                        <div class="row">
-                                            <div class="col-12 fw-bold">
-                                            <?php echo htmlspecialchars($donnee["first_name"] . ' ' . $donnee["last_name"] . '  ' . $donnee["dept_name"] ); ?>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </td>
-                            </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </article>
-    </section>
-
     <!-- Pagination -->
     <nav class="mt-4 text-center" aria-label="Navigation">
         <form method="get" class="d-inline">
