@@ -42,21 +42,41 @@ function select_department_name()
     $resultat = mysqli_query(dbconnect(), $sql);
     return $resultat;
 }
-function select_age($emp_no)
+
+function select_recherche($mode, $departement, $mot, $min, $max, $offset = 0)
 {
-    $sql = "SELECT YEAR(NOW())- YEAR(birth_date) from employees ";
-    $resultat = mysqli_query(dbconnect(), $sql);
-    return $resultat;
-}
-function select_recherche($mode , $departement , $mot , $min , $max, $age)
-{
-    if($mode === "commencer")
+    $conn = dbconnect();
+
+    $mot = mysqli_real_escape_string($conn, $mot);
+    $departement = mysqli_real_escape_string($conn, $departement);
+
+    if ($mode === "commencer") {
+        $sql = "SELECT employees.last_name, employees.emp_no 
+                FROM employees 
+                JOIN dept_emp ON employees.emp_no = dept_emp.emp_no 
+                JOIN departments ON departments.dept_no = dept_emp.dept_no  
+                WHERE employees.last_name LIKE '$mot%' 
+                AND departments.dept_name = '$departement' 
+                AND TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) BETWEEN $min AND $max 
+                LIMIT 20 OFFSET $offset";
+
+        $resultat = mysqli_query($conn, $sql);
+        return $resultat;
+    }
+    elseif($mode === "contenir")
     {
-        $sql = "SELECT employees.last_name, employees.emp_no FROM employees join dept_emp ON employees.emp_no = dept_emp.emp_no 
-        join departments ON departments.dept_no = dept_emp.dept_no  WHERE employees.last_name LIKE '$mot%' AND departments.dept_name = '%s' AND %s < %s < %s LIMIT 20  ";
-        $sql=sprintf($sql,$departement,$min,$age,$max);
-         $resultat = mysqli_query(dbconnect(), $sql);
-         return $resultat;
+        $sql = "SELECT employees.last_name, employees.emp_no, departments.dept_name
+                FROM employees 
+                JOIN dept_emp ON employees.emp_no = dept_emp.emp_no 
+                JOIN departments ON departments.dept_no = dept_emp.dept_no  
+                WHERE employees.last_name LIKE '%$mot%' 
+                AND departments.dept_name = '$departement' 
+                AND TIMESTAMPDIFF(YEAR, birth_date, CURDATE()) BETWEEN $min AND $max 
+                LIMIT 20 OFFSET $offset";
+
+        $resultat = mysqli_query($conn, $sql);
+        return $resultat;
     }
 }
+
 ?>

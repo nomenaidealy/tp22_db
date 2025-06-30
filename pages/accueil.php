@@ -14,6 +14,10 @@
 </head>
 <body class="bg-light">
     <div class="container mt-5">
+    </div>   <div class="mt-3 text-center">
+<a href="recherche.php" target="_blank" class="btn btn-secondary">← Rechercher</a>
+        </div>
+        </div>
         <h1 class="mb-4 text-center">Gestion des Départements</h1>
         
         <div class="card">
@@ -44,10 +48,10 @@
 </tbody>
                 </table>
             </div>
-        </div>   <div class="mt-3">
+        </div>   <div class="mt-3 text-center">
 <a href="../index.php" target="_blank" class="btn btn-secondary">← Retour</a>
         </div>
-        </div>
+      
     </div>
 </body>
 </html>
