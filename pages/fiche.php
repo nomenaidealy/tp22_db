@@ -1,9 +1,4 @@
-<?php 
-    require("../inc/fonction.php");
-    ini_set("display_errors",1);
-    $num = $_GET['num'];
-    $resultat = select_lien_employer($num);
-?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
