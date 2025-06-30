@@ -33,6 +33,7 @@ $resultat = select_recherche($mode, $departement, $mot, $min, $max, $offset);
                         <tr>
                             <th>Nom de l'employé</th>
                             <th>Numéro</th>
+                            <th>Fiche</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,6 +42,12 @@ $resultat = select_recherche($mode, $departement, $mot, $min, $max, $offset);
                         <tr>
                             <td><?php echo $donnee["last_name"]; ?></td>
                             <td><?php echo $donnee["emp_no"]; ?></td>
+                            <td>
+                                        <a href="fiche.php?num=<?php echo $donnee["emp_no"]; ?>" 
+                                           class="btn btn-sm btn-outline-primary">
+                                            Voir fiche
+                                        </a>
+                                    </td>
                         </tr>
                         <?php } ?>
                     <?php } else { ?>

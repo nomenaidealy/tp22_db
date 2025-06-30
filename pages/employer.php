@@ -2,11 +2,8 @@
 require("../inc/fonction.php");
 ini_set("display_errors", 1);
 
-// Pagination
 $page = isset($_GET['page']) ? intval($_GET['page']) : 0;
 $offset = $page * 20;
-
-// Numéro du département
 $num = $_GET['num'] ?? '';
 $resultat = select_lien_departement($num, $offset);
 ?>

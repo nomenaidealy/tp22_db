@@ -30,7 +30,7 @@ function select_lien_employer($num){
     as e on e.emp_no=titles.emp_no
     join salaries
     as s on s.emp_no=titles.emp_no
-     where e.emp_no=$num";
+     where e.emp_no=$num AND YEAR(s.to_date) <= YEAR(CURDATE())";
 $sql=sprintf($sql);
 $resultat = mysqli_query(dbconnect(), $sql);
 return $resultat;
