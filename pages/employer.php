@@ -1,66 +1,84 @@
 <?php
 require("../inc/fonction.php");
 ini_set("display_errors", 1);
-$num = $_GET['num'];
-$resultat = select_lien_departement($num);
+
+// Pagination
+$page = isset($_GET['page']) ? intval($_GET['page']) : 0;
+$offset = $page * 20;
+
+// Numéro du département
+$num = $_GET['num'] ?? '';
+$resultat = select_lien_departement($num, $offset);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des employés</title>
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-light">
- <main class="container">
-        <section class="employee-list">
-            <header class="mb-4">
-                <h2 class="text-center">Employés du département <?php echo htmlspecialchars($num); ?></h2>
-            </header>
+<main class="container">
+    <section class="employee-list">
+        <header class="mb-4">
+            <h2 class="text-center">Employés du département <?php echo htmlspecialchars($num); ?></h2>
+        </header>
 
-            <article class="card">
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover mb-0" role="table" aria-label="Liste des employés du département <?php echo htmlspecialchars($num); ?>">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th scope="col" id="employee-name">Nom complet de l'employé</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                while($donnee = mysqli_fetch_assoc($resultat)) {?>                   
-                             <td colspan="3" class="p-0">
-                             <a href="fiche.php?num=<?php echo $donnee["emp_no"]; ?>" 
-                             class="d-block text-decoration-none text-dark p-3">
-                             <div class="row">
-                             <div class="col-4 fw-bold"><?php echo $donnee["first_name"]; ?>  <?php echo $donnee["last_name"]; ?> </div>
-                             
-            </div>
-        </a>
-    </td>
-</tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
+        <article class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0" role="table" aria-label="Liste des employés du département <?php echo htmlspecialchars($num); ?>">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col" id="employee-name">Nom complet de l'employé</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while($donnee = mysqli_fetch_assoc($resultat)) { ?>     
+                            <tr>              
+                                <td class="p-0">
+                                    <a href="fiche.php?num=<?php echo $donnee["emp_no"]; ?>" class="d-block text-decoration-none text-dark p-3">
+                                        <div class="row">
+                                            <div class="col-12 fw-bold">
+                                            <?php echo htmlspecialchars($donnee["first_name"] . ' ' . $donnee["last_name"] . '  ' . $donnee["dept_name"] ); ?>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
-                
-            </article>
-        </section>
+            </div>
+        </article>
+    </section>
 
-        <nav class="mt-4" aria-label="Navigation">
-      
-        </nav>
-    </main>
+    <!-- Pagination -->
+    <nav class="mt-4 text-center" aria-label="Navigation">
+        <form method="get" class="d-inline">
+            <input type="hidden" name="num" value="<?php echo htmlspecialchars($num); ?>">
+            <?php if ($page > 0): ?>
+                <input type="hidden" name="page" value="<?php echo $page - 1; ?>">
+                <input type="submit" class="btn btn-secondary me-2" value="← Précédent">
+            <?php endif; ?>
+        </form>
 
-    <footer class="bg-dark text-white text-center py-3 mt-5">
-        <div class="container">
-            <p class="mb-0">
-                <small> Système de gestion des employés</small>
-            </p>
-        </div>
-    </footer>
+        <form method="get" class="d-inline">
+            <input type="hidden" name="num" value="<?php echo htmlspecialchars($num); ?>">
+            <input type="hidden" name="page" value="<?php echo $page + 1; ?>">
+            <input type="submit" class="btn btn-primary" value="Suivant →">
+        </form>
+    </nav>
+</main>
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+        <p class="mb-0">
+            <small>Système de gestion des employés</small>
+        </p>
+    </div>
+</footer>
 </body>
 </html>
