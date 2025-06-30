@@ -13,7 +13,7 @@ return $resultat;
 }
 
 function select_lien_departement($num){
-    $sql="SELECT last_name,first_name,employees.emp_no from employees 
+    $sql="SELECT last_name,first_name,employees.emp_no,dept_name from employees 
     join departments 
     join dept_emp 
     on dept_emp.dept_no=departments.dept_no on dept_emp.emp_no=employees.emp_no

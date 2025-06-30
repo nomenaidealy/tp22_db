@@ -25,7 +25,6 @@
                 <table class="table table-striped table-hover mb-0">
                     <thead class="table-dark">
                         
-                            <th>Numéro de département</th>
                             <th>Nom du département</th>
                             <th>Nom du manager</th>
                         </tr>
@@ -37,7 +36,6 @@
         <a href="employer.php?num=<?php echo $donnee["dept_no"]; ?>" 
            class="d-block text-decoration-none text-dark p-3">
             <div class="row">
-                <div class="col-4 fw-bold"><?php echo $donnee["dept_no"]; ?></div>
                 <div class="col-4"><?php echo $donnee["dept_name"]; ?></div>
                 <div class="col-4"><?php echo $donnee["last_name"]; ?></div>
             </div>
